@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model Meeting {
+  id           String            @id @default(uuid())
+  title        String
+  participants String
+  meetingDate  DateTime
+  createdAt    DateTime          @default(now())
+  transcript   TranscriptEntry[]
+  analysis     MeetingAnalysis?
+  actionItems  ActionItem[]
+}
+
+model TranscriptEntry {
+  id        String  @id @default(uuid())
+  timestamp String
+  speaker   String
+  text      String
+  meetingId String
+  meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+}
+
+model MeetingAnalysis {
+  id          String   @id @default(uuid())
+  summary     String
+  actionItems String
+  decisions   String
+  followUps   String
+  createdAt   DateTime @default(now())
+  meetingId   String   @unique
+  meeting     Meeting  @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+}
+
+model ActionItem {
+  id        String        @id @default(uuid())
+  task      String
+  assignee  String
+  status    String        @default("PENDING")
+  dueDate   DateTime?
+  meetingId String?
+  citations String
+  createdAt DateTime      @default(now())
+  meeting   Meeting?      @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  reminders ReminderLog[]
+}
+
+model ReminderLog {
+  id           String     @id @default(uuid())
+  actionItemId String
+  sentAt       DateTime   @default(now())
+  channel      String     @default("email")
+  actionItem   ActionItem @relation(fields: [actionItemId], references: [id], onDelete: Cascade)
+}
