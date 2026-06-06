@@ -4,32 +4,41 @@
   "description": "Meeting Intelligence Service Backend",
   "main": "src/index.js",
   "type": "commonjs",
-  "scripts": {
-    "dev": "nodemon",
-    "start": "node src/index.js",
-    "db:migrate": "prisma migrate dev",
-    "db:generate": "prisma generate",
-    "db:studio": "prisma studio"
-  },
+"scripts": {
+  "dev": "nodemon",
+  "start": "node src/index.js",
+  "db:migrate": "prisma migrate dev",
+  "db:generate": "prisma generate",
+  "db:studio": "prisma studio",
+  "test": "jest --forceExit"
+},
+"jest": {
+  "testEnvironment": "node",
+  "testMatch": ["**/tests/**/*.test.js"]
+},
   "dependencies": {
-    "express": "^4.18.2",
     "@prisma/client": "^5.7.0",
-    "jsonwebtoken": "^9.0.2",
     "bcryptjs": "^2.4.3",
-    "zod": "^3.22.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "groq-sdk": "^0.3.3",
+    "jsonwebtoken": "^9.0.2",
+    "node-cron": "^3.0.3",
     "pino": "^8.17.2",
     "pino-http": "^9.0.0",
-    "uuid": "^9.0.0",
-    "node-cron": "^3.0.3",
     "resend": "^2.0.0",
-    "groq-sdk": "^0.3.3",
-    "dotenv": "^16.3.1",
-    "cors": "^2.8.5",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^7.2.0",
+    "jest": "^30.4.2",
     "nodemon": "^3.0.2",
-    "prisma": "^5.7.0"
+    "prisma": "^5.7.0",
+    "supertest": "^7.2.2"
   }
 }

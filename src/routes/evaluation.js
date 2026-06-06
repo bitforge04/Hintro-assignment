@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
       candidateName: "aryan Rana",
       email: "aryanrana21415@email.com",
       repositoryUrl: "https://github.com/bitforge04/Hintro-assignment.git",
-      deployedUrl: "https://your-app.onrender.com",
+      deployedUrl: "https://hintro-assignment-2bfm.onrender.com",
       externalIntegration: "Resend Email",
       features: [
         "JWT Authentication",
