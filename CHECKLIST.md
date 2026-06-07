@@ -18,7 +18,7 @@
 - [x] Scheduled reminder job implemented
 - [x] One real third-party integration implemented (Resend Email)
 - [x] Reminder notifications delivered through integration
-- [ ] Unit tests implemented
+- [x] Unit tests implemented
 - [x] Input validation implemented
 
 ## Bonus Milestones (Optional)
